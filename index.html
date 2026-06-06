@@ -771,7 +771,7 @@ function renderShop(){
         <span class="product-size-tag">${s.size}</span>
         <div class="product-price">${fmt(s.price)}</div>
         ${s.desc?`<div class="product-desc">${s.desc}</div>`:''}
-        <button class="btn-order" onclick="event.stopPropagation();window.open('https://www.instagram.com/na8kis?igsh=MXg5MXFna2MwdGdnbQ==','_blank')">طلب الآن</button>
+        <button class="btn-order" onclick="event.stopPropagation();alert('للطلب تواصل مع المتجر')">طلب الآن</button>
       </div>
     </div>`).join('');
 }
