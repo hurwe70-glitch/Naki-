@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ناكيش — فن التطريز</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #6B0F1A;
+    --burgundy-dark: #3D0008;
+    --burgundy-mid: #8B1A2A;
+    --burgundy-light: #A52535;
+    --silver: #7A7A7A;
+    --silver-light: #9A9A9A;
+    --silver-dark: #4A4A52;
+    --cream: #F5F0E8;
+    --cream-dark: #E8E0D0;
+    --gold: #B8955A;
+    --gold-light: #CCA96E;
+    --white: #FAF8F5;
+    --text-dark: #2a2a2a;
+    --text-mid: #3d3d3d;
+    --shadow: rgba(60,0,10,0.18);
+    --page-bg: #1E0A0E;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Scheherazade New', 'Noto Naskh Arabic', serif;
+    background: var(--page-bg);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  body::before {
+    content:'';
+    position:fixed; inset:0; z-index:0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(107,15,26,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(61,0,8,0.15) 0%, transparent 50%);
+    pointer-events:none;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position:sticky; top:0; z-index:100;
+    background: rgba(30,10,14,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(184,149,90,0.15);
+    padding: 0 1rem;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+
+  .logo {
+    font-family: 'Scheherazade New', serif;
+    font-size: 1.9rem;
+    color: var(--cream);
+    cursor:pointer;
+    display:flex; align-items:baseline; gap:.4rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .logo span { font-size:0.55rem; color:var(--silver); font-family:'Scheherazade New',serif; letter-spacing:3px; font-weight:400; }
+
+  nav { display:flex; gap:0.1rem; align-items:center; }
+  nav button {
+    background:none; border:none; cursor:pointer;
+    font-family:'Scheherazade New', serif; font-size:1rem; font-weight:500;
+    color: var(--silver-light);
+    padding: 0.45rem 0.7rem;
+    border-radius:8px;
+    transition: all .22s ease;
+    position:relative;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+  }
+  nav button:hover { color: var(--cream); background: rgba(255,255,255,0.05); }
+  nav button.active { color: var(--cream); }
+  nav button.active::after {
+    content:''; position:absolute; bottom:5px; right:50%; transform:translateX(50%);
+    width:14px; height:1.5px; background:var(--gold); border-radius:2px;
+  }
+
+  /* ─── PAGE TRANSITIONS ─── */
+  .page { display:none; min-height:calc(100vh - 60px); padding:2rem 1rem; position:relative; z-index:1; }
+  .page.active { display:block; }
+  .page.page-enter { animation: pageIn .4s cubic-bezier(0.22,1,0.36,1) forwards; }
+  @keyframes pageIn {
+    from { opacity:0; transform:translateY(14px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .page-title {
+    font-family:'Scheherazade New',serif;
+    font-size:2rem; color:var(--cream);
+    text-align:center; margin-bottom:0.3rem; font-weight:600;
+  }
+  .page-sub { text-align:center; color:var(--silver); font-size:0.95rem; margin-bottom:2rem; line-height:1.8; }
+  .divider {
+    width:80px; height:1px;
+    background: linear-gradient(90deg,transparent,rgba(184,149,90,0.5),transparent);
+    margin:0.5rem auto 2rem;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height:calc(100vh - 60px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:2rem 1rem;
+  }
+
+  /* Logo image in hero */
+  .hero-logo-img {
+    width: clamp(180px, 55vw, 320px);
+    height: clamp(180px, 55vw, 320px);
+    object-fit: contain;
+    animation: heroFadeIn 1.2s cubic-bezier(0.22,1,0.36,1) both;
+    border-radius: 12px;
+  }
+
+  @keyframes heroFadeIn {
+    from { opacity:0; transform:translateY(28px) scale(0.96); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+  }
+  .hero-en {
+    letter-spacing:8px; font-size:0.75rem; color:var(--silver);
+    margin-top:0.8rem;
+    animation: heroFadeIn 1.2s .2s cubic-bezier(0.22,1,0.36,1) both;
+    font-weight:400; font-family:'Scheherazade New',serif;
+  }
+  .hero-tagline {
+    font-size:1.05rem; color:var(--silver-light); margin:1.5rem 0 2.5rem; max-width:340px; line-height:2;
+    font-weight:400;
+    animation: heroFadeIn 1.2s .4s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-line {
+    width:40px; height:1px; background:var(--gold); margin:0.8rem auto;
+    animation: heroFadeIn 1.2s .3s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-btns {
+    display:flex; gap:0.9rem; flex-wrap:wrap; justify-content:center;
+    animation: heroFadeIn 1.2s .6s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .btn-primary {
+    padding:0.7rem 1.8rem; border-radius:8px;
+    background: rgba(184,149,90,0.12);
+    border:1px solid rgba(184,149,90,0.35);
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1rem;
+    cursor:pointer; transition:all .25s ease;
+    min-height:44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary:hover { background:rgba(184,149,90,0.22); }
+  .btn-outline {
+    padding:0.7rem 1.8rem; border-radius:8px;
+    background:transparent; border:1px solid rgba(255,255,255,0.15);
+    color:var(--silver-light); font-family:'Scheherazade New',serif; font-weight:500; font-size:1rem;
+    cursor:pointer; transition:all .25s ease;
+    min-height:44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-outline:hover { border-color:rgba(255,255,255,0.3); color:var(--cream); }
+
+  /* ─── CANVAS CARDS ─── */
+  .canvas-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:0.9rem;
+  }
+  .canvas-card {
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:10px; padding:1.1rem 0.9rem;
+    text-align:center; cursor:pointer;
+    transition:all .25s ease;
+    position:relative; overflow:hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .canvas-card:active { transform:scale(0.97); }
+  .canvas-preview {
+    background:rgba(107,15,26,0.2);
+    border:1px solid rgba(184,149,90,0.15);
+    margin:0 auto 0.8rem;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.65rem; color:var(--silver); border-radius:3px;
+  }
+  .canvas-name { font-weight:600; font-size:1rem; color:var(--cream); margin-bottom:.25rem; }
+  .canvas-size { font-size:0.82rem; color:var(--silver); }
+  .canvas-price { font-size:1rem; font-weight:700; color:var(--cream); margin-top:.45rem; }
+  .badge-new { position:absolute; top:8px; left:8px; background:var(--gold); color:var(--burgundy-dark); font-size:0.6rem; font-weight:800; padding:2px 7px; border-radius:20px; }
+
+  /* ─── WORKS / PRODUCTS GRIDS ─── */
+  .works-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:1rem;
+  }
+  .work-card, .product-card {
+    border-radius:10px; overflow:hidden;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.07);
+    transition:all .3s ease; cursor:pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .work-card:active, .product-card:active { transform:scale(0.97); }
+  .work-img, .product-img {
+    width:100%; aspect-ratio:1;
+    background:rgba(61,0,8,0.5);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; position:relative;
+  }
+  .work-img img, .product-img img { width:100%; height:100%; object-fit:cover; }
+  .work-img .no-img, .product-img .no-img { font-size:2.2rem; opacity:.2; }
+  .work-info, .product-info { padding:0.8rem; }
+  .work-title, .product-name { font-weight:600; color:var(--cream); font-size:0.95rem; margin-bottom:.2rem; }
+  .work-dim, .product-dim { font-size:0.78rem; color:var(--silver); }
+  .work-type { font-size:0.75rem; color:var(--silver-light); margin-top:.2rem; }
+  .product-price { font-size:1.05rem; font-weight:700; color:var(--cream); margin-top:.4rem; }
+  .product-size-tag {
+    display:inline-block; background:rgba(255,255,255,0.06); color:var(--silver-light);
+    font-size:0.7rem; padding:2px 7px; border-radius:4px; margin-top:.2rem;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .product-desc { font-size:0.8rem; color:var(--silver); margin-top:.3rem; line-height:1.6; }
+  .btn-order {
+    width:100%; margin-top:.65rem; padding:.5rem; border-radius:7px;
+    background:rgba(184,149,90,0.1);
+    border:1px solid rgba(184,149,90,0.25);
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:0.9rem;
+    cursor:pointer; transition:.22s; min-height:42px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-order:active { background:rgba(184,149,90,0.2); }
+
+  /* ─── ADMIN PANEL ─── */
+  .admin-panel {
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:12px; padding:1.4rem; margin-bottom:1.5rem;
+  }
+  .admin-section-title {
+    font-family:'Scheherazade New',serif;
+    font-size:1.2rem; color:var(--cream); margin-bottom:1rem;
+    display:flex; align-items:center; gap:.5rem; font-weight:600;
+  }
+  .form-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; }
+  .form-group { display:flex; flex-direction:column; gap:.3rem; }
+  label { font-size:0.82rem; color:var(--silver-light); font-weight:500; font-family:'Scheherazade New',serif; }
+  input[type=text], input[type=number], input[type=password], input[type=color], textarea, select {
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:7px; padding:.55rem .75rem;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-size:0.9rem;
+    outline:none; transition:.2s; width:100%; min-height:42px;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  input:focus, textarea:focus, select:focus { border-color:rgba(184,149,90,0.4); background:rgba(184,149,90,0.04); }
+  input[type=color] { height:42px; cursor:pointer; padding:.2rem; }
+  textarea { resize:vertical; min-height:75px; -webkit-user-select: text; user-select: text; }
+  select option { background:#2A1018; }
+  .btn-add {
+    padding:.55rem 1.5rem; background:rgba(184,149,90,0.12);
+    border:1px solid rgba(184,149,90,0.3); border-radius:7px;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:0.9rem;
+    cursor:pointer; transition:.2s; margin-top:0.7rem; min-height:42px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn-add:active { background:rgba(184,149,90,0.2); }
+  .btn-danger {
+    background:rgba(180,30,30,0.18); border:1px solid rgba(200,50,50,0.25);
+    color:#d07070; border-radius:6px; padding:.35rem .7rem; font-size:.8rem;
+    cursor:pointer; font-family:'Scheherazade New',serif; transition:.2s; min-height:40px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .img-upload-label {
+    display:block; border:1.5px dashed rgba(255,255,255,0.1);
+    border-radius:9px; padding:.9rem; text-align:center;
+    cursor:pointer; transition:.2s; color:var(--silver); font-size:0.85rem;
+    margin-top:.6rem; font-family:'Scheherazade New',serif;
+  }
+  .img-upload-label input { display:none; }
+  .img-preview { width:75px; height:75px; object-fit:cover; border-radius:6px; border:1px solid rgba(255,255,255,0.1); margin:.4rem auto 0; display:block; }
+
+  /* ─── ITEM ROWS ─── */
+  .item-row {
+    display:flex; align-items:center; gap:.75rem; padding:.7rem .85rem;
+    border-radius:8px; margin-bottom:.45rem;
+    background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ─── LOCK SCREEN ─── */
+  .lock-screen {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    min-height:calc(100vh - 60px); text-align:center; padding:2rem;
+  }
+  .lock-icon { font-size:2.8rem; margin-bottom:1rem; opacity:.4; }
+  .lock-title { font-family:'Scheherazade New',serif; font-size:1.7rem; color:var(--cream); margin-bottom:.35rem; font-weight:600; }
+  .lock-sub { color:var(--silver); margin-bottom:2rem; font-size:.95rem; font-family:'Scheherazade New',serif; }
+  .lock-input-wrap { display:flex; gap:.7rem; flex-wrap:wrap; justify-content:center; }
+  .lock-input { font-size:1.1rem; text-align:center; width:200px; letter-spacing:4px; }
+  .btn-unlock {
+    padding:.6rem 1.6rem; background:rgba(184,149,90,0.12);
+    border:1px solid rgba(184,149,90,0.3); border-radius:7px;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:.95rem;
+    cursor:pointer; transition:.2s; min-height:44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .lock-error { color:#d06060; font-size:.82rem; margin-top:.5rem; min-height:20px; font-family:'Scheherazade New',serif; }
+
+  /* ─── ADMIN TABS ─── */
+  .admin-tabs {
+    display:flex; gap:.3rem; margin-bottom:1.4rem; flex-wrap:wrap;
+    background:rgba(255,255,255,0.02); padding:.35rem; border-radius:9px;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .admin-tab {
+    padding:.45rem .9rem; border-radius:6px;
+    background:transparent; border:none; color:var(--silver);
+    font-family:'Scheherazade New',serif; font-size:.88rem; font-weight:500; cursor:pointer; transition:.2s;
+    min-height:40px; -webkit-tap-highlight-color: transparent;
+    flex:1; min-width:70px; text-align:center;
+  }
+  .admin-tab:hover { color:var(--cream); }
+  .admin-tab.active { background:rgba(184,149,90,0.1); color:var(--cream); border:1px solid rgba(184,149,90,0.2); }
+  .admin-sub { display:none; }
+  .admin-sub.active { display:block; animation: pageIn .3s cubic-bezier(0.22,1,0.36,1); }
+
+  /* ─── SETTINGS ─── */
+  .settings-row {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,0.04); gap:1rem; flex-wrap:wrap;
+  }
+  .settings-row:last-child { border:none; }
+  .settings-label { font-size:.9rem; color:var(--cream); font-weight:500; font-family:'Scheherazade New',serif; }
+  .settings-note { font-size:.75rem; color:var(--silver); margin-top:.12rem; font-family:'Scheherazade New',serif; }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(184,149,90,0.2); border-radius:3px; }
+
+  /* ─── MODAL ─── */
+  .modal-bg {
+    position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:200;
+    display:flex; align-items:flex-end; justify-content:center; padding:0;
+    animation: modalIn .25s ease;
+  }
+  @keyframes modalIn { from{opacity:0} to{opacity:1} }
+  .modal-bg.hidden { display:none !important; }
+  .modal-box {
+    background:#1E0A0E; border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px 18px 0 0; padding:1.6rem; width:100%; max-width:500px;
+    position:relative; max-height:85vh; overflow-y:auto;
+    animation: modalSlide .3s cubic-bezier(0.22,1,0.36,1);
+  }
+  @keyframes modalSlide {
+    from{transform:translateY(40px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+  }
+  .modal-handle { width:36px; height:4px; background:rgba(255,255,255,0.15); border-radius:2px; margin:0 auto 1.2rem; }
+  .modal-close {
+    position:absolute; top:.85rem; left:.85rem;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);
+    color:var(--silver); font-size:1rem; cursor:pointer;
+    width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    transition:.2s; -webkit-tap-highlight-color:transparent;
+  }
+  .modal-img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:10px; margin-bottom:.9rem; }
+  .modal-title { font-family:'Scheherazade New',serif; font-size:1.5rem; color:var(--cream); margin-bottom:.3rem; font-weight:600; }
+  .modal-info { font-size:.85rem; color:var(--silver); line-height:1.9; font-family:'Scheherazade New',serif; }
+  .modal-price { font-size:1.25rem; font-weight:700; color:var(--cream); margin-top:.65rem; font-family:'Scheherazade New',serif; }
+  .hidden { display:none !important; }
+
+  /* ─── STATUS BAR ─── */
+  .status-bar {
+    text-align:center; font-size:.7rem; color:rgba(255,255,255,0.15);
+    padding:.6rem; border-top:1px solid rgba(255,255,255,0.04);
+    margin-top:3rem; letter-spacing:1px; font-family:'Scheherazade New',serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" id="logo-tap" onclick="handleLogoTap()">
+    ناكيش
+    <span>NAKİŞ</span>
+  </div>
+  <nav>
+    <button onclick="showPage('home')" id="nav-home" class="active">🏠 <span>الرئيسية</span></button>
+    <button onclick="showPage('canvas')" id="nav-canvas">🖼 <span>اللوحات</span></button>
+    <button onclick="showPage('shop')" id="nav-shop">🛍 <span>المتجر</span></button>
+    <button onclick="showPage('works')" id="nav-works">✨ <span>أعمالي</span></button>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section id="hero">
+    <!-- The uploaded logo image -->
+    <img class="hero-logo-img" src="" id="hero-logo-img" alt="ناكيش" onerror="this.style.display='none'; document.getElementById('hero-logo-fallback').style.display='block'">
+    <div id="hero-logo-fallback" style="display:none;font-family:'Scheherazade New',serif;font-size:clamp(3.5rem,11vw,7rem);color:var(--cream);font-weight:700;line-height:1;">ناكيش</div>
+    <div class="hero-en">N A K İ Ş</div>
+    <div class="hero-line"></div>
+    <p class="hero-tagline">فن التطريز اليدوي الأصيل — حيث تُروى القصص بالإبرة والخيط</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('shop')">تصفح المتجر</button>
+      <button class="btn-outline" onclick="showPage('works')">أعمالي</button>
+    </div>
+  </section>
+</div>
+
+<!-- CANVAS SIZES PAGE -->
+<div class="page" id="page-canvas">
+  <h1 class="page-title">لوحات الكانفاس</h1>
+  <p class="page-sub">اختر القياس المناسب لمشروعك — كل القياسات متاحة للطلب</p>
+  <div class="divider"></div>
+  <div class="canvas-grid" id="canvas-grid"></div>
+</div>
+
+<!-- SHOP PAGE -->
+<div class="page" id="page-shop">
+  <h1 class="page-title">المتجر</h1>
+  <p class="page-sub">لوحات تطريز جاهزة للطلب — بأسعار بالدينار العراقي</p>
+  <div class="divider"></div>
+  <div class="works-grid" id="shop-grid"></div>
+</div>
+
+<!-- MY WORKS PAGE -->
+<div class="page" id="page-works">
+  <h1 class="page-title">أعمالي</h1>
+  <p class="page-sub">مجموعة من اللوحات المطرزة يدوياً — إبداع يرتدي الخيوط</p>
+  <div class="divider"></div>
+  <div class="works-grid" id="works-grid"></div>
+</div>
+
+<!-- ADMIN (HIDDEN — accessible via 5 logo taps) -->
+<div class="page" id="page-admin">
+  <div class="lock-screen" id="lock-screen">
+    <div class="lock-icon">🔐</div>
+    <div class="lock-title">لوحة الإدارة</div>
+    <div class="lock-sub">أدخل الرمز السري للوصول</div>
+    <div class="lock-input-wrap">
+      <input type="password" class="lock-input" id="admin-code" placeholder="••••••" onkeydown="if(event.key==='Enter')tryUnlock()">
+      <button class="btn-unlock" onclick="tryUnlock()">دخول</button>
+    </div>
+    <div class="lock-error" id="lock-error"></div>
+  </div>
+
+  <div id="admin-content" class="hidden">
+    <h1 class="page-title">لوحة الإدارة</h1>
+    <div class="divider"></div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('tab-canvas',this)">🖼 كانفاس</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-shop',this)">🛍 المتجر</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-works',this)">✨ أعمالي</button>
+      <button class="admin-tab" onclick="switchAdminTab('tab-settings',this)">⚙️ إعدادات</button>
+    </div>
+
+    <!-- CANVAS ADMIN -->
+    <div class="admin-sub active" id="tab-canvas">
+      <div class="admin-panel">
+        <div class="admin-section-title">➕ إضافة قياس كانفاس</div>
+        <div class="form-grid">
+          <div class="form-group"><label>اسم القياس</label><input type="text" id="cv-name" placeholder="مثال: وسط مربع"></div>
+          <div class="form-group"><label>العرض (سم)</label><input type="number" id="cv-w" placeholder="40"></div>
+          <div class="form-group"><label>الارتفاع (سم)</label><input type="number" id="cv-h" placeholder="40"></div>
+          <div class="form-group"><label>السعر (دينار عراقي)</label><input type="number" id="cv-price" placeholder="25000"></div>
+          <div class="form-group"><label>جديد؟</label><select id="cv-new"><option value="0">لا</option><option value="1">نعم — إظهار شارة</option></select></div>
+        </div>
+        <button class="btn-add" onclick="addCanvas()">➕ إضافة القياس</button>
+      </div>
+      <div class="admin-section-title">📋 القياسات الحالية</div>
+      <div id="admin-canvas-list"></div>
+    </div>
+
+    <!-- SHOP ADMIN -->
+    <div class="admin-sub" id="tab-shop">
+      <div class="admin-panel">
+        <div class="admin-section-title">➕ إضافة منتج للمتجر</div>
+        <div class="form-grid">
+          <div class="form-group"><label>اسم اللوحة</label><input type="text" id="sh-name" placeholder="اسم التصميم"></div>
+          <div class="form-group"><label>العرض (سم)</label><input type="number" id="sh-w" placeholder="30"></div>
+          <div class="form-group"><label>الارتفاع (سم)</label><input type="number" id="sh-h" placeholder="40"></div>
+          <div class="form-group"><label>الحجم</label><select id="sh-size"><option>صغير</option><option>وسط</option><option>كبير</option><option>كبير جداً</option></select></div>
+          <div class="form-group"><label>السعر (دينار عراقي)</label><input type="number" id="sh-price" placeholder="85000"></div>
+          <div class="form-group" style="grid-column:span 2"><label>وصف المنتج</label><textarea id="sh-desc" placeholder="وصف قصير للتصميم..."></textarea></div>
+        </div>
+        <label class="img-upload-label">📷 رفع صورة المنتج<input type="file" accept="image/*" onchange="previewImg(this,'sh-img-preview')"><img id="sh-img-preview" class="img-preview hidden"></label>
+        <button class="btn-add" onclick="addShopItem()">➕ إضافة للمتجر</button>
+      </div>
+      <div class="admin-section-title">📋 منتجات المتجر</div>
+      <div id="admin-shop-list"></div>
+    </div>
+
+    <!-- WORKS ADMIN -->
+    <div class="admin-sub" id="tab-works">
+      <div class="admin-panel">
+        <div class="admin-section-title">➕ إضافة عمل من أعمالي</div>
+        <div class="form-grid">
+          <div class="form-group"><label>عنوان العمل</label><input type="text" id="wk-name" placeholder="اسم اللوحة"></div>
+          <div class="form-group"><label>العرض (سم)</label><input type="number" id="wk-w" placeholder="35"></div>
+          <div class="form-group"><label>الارتفاع (سم)</label><input type="number" id="wk-h" placeholder="45"></div>
+          <div class="form-group"><label>نوع التطريز</label><input type="text" id="wk-type" placeholder="مثال: تطريز بالإبرة"></div>
+        </div>
+        <label class="img-upload-label">📷 رفع صورة العمل<input type="file" accept="image/*" onchange="previewImg(this,'wk-img-preview')"><img id="wk-img-preview" class="img-preview hidden"></label>
+        <button class="btn-add" onclick="addWork()">➕ إضافة العمل</button>
+      </div>
+      <div class="admin-section-title">📋 أعمالي</div>
+      <div id="admin-works-list"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="admin-sub" id="tab-settings">
+      <div class="admin-panel">
+        <div class="admin-section-title">⚙️ الإعدادات العامة</div>
+        <div class="settings-row">
+          <div><div class="settings-label">اسم المتجر</div><div class="settings-note">يظهر في رأس الصفحة</div></div>
+          <input type="text" id="s-storename" style="width:180px" placeholder="ناكيش">
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">تغيير الرمز السري</div><div class="settings-note">الرمز الافتراضي: nakish2025</div></div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <input type="password" id="s-oldpass" style="width:110px" placeholder="القديم">
+            <input type="password" id="s-newpass" style="width:110px" placeholder="الجديد">
+            <button class="btn-add" style="margin:0" onclick="changePass()">تغيير</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">عملة الأسعار</div></div>
+          <select id="s-currency" style="width:150px">
+            <option value="د.ع">دينار عراقي (د.ع)</option>
+            <option value="$">دولار ($)</option>
+          </select>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">لوكو الصفحة الرئيسية</div><div class="settings-note">صورة تظهر في الهيرو</div></div>
+          <label class="img-upload-label" style="width:auto;padding:.4rem .8rem;margin:0">
+            رفع لوكو <input type="file" accept="image/*" onchange="uploadHeroLogo(this)">
+          </label>
+        </div>
+        <div class="settings-row">
+          <div><div class="settings-label">مسح جميع البيانات</div><div class="settings-note">⚠️ لا يمكن التراجع</div></div>
+          <button class="btn-danger" onclick="if(confirm('هل أنت متأكد؟ ستُمسح كل البيانات!'))clearAll()">مسح الكل</button>
+        </div>
+        <button class="btn-add" onclick="saveSettings()">💾 حفظ الإعدادات</button>
+        <div id="settings-msg" style="color:var(--silver-light);margin-top:.6rem;font-size:.85rem;font-family:'Scheherazade New',serif;"></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem">
+      <button class="btn-danger" onclick="lockAdmin()">🔒 قفل لوحة الإدارة</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg hidden" id="modal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img id="modal-img" class="modal-img hidden">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-info" id="modal-info"></div>
+    <div class="modal-price" id="modal-price"></div>
+  </div>
+</div>
+
+<div class="status-bar">ناكيش — فن التطريز الأصيل © 2025</div>
+
+<script>
+// ── PREVENT COPY/PASTE/CONTEXT MENU ──
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  // Allow selection inside admin inputs
+  if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  e.preventDefault();
+});
+
+// ── STATE ──
+let DB = {
+  canvases: [], shop: [], works: [],
+  settings: { pass:'nakish2025', currency:'د.ع', storename:'ناكيش', heroLogo:'' }
+};
+let adminUnlocked = false;
+
+function save(){ localStorage.setItem('nakish_db', JSON.stringify(DB)); }
+function load(){
+  const d = localStorage.getItem('nakish_db');
+  if(d){ try{ const p=JSON.parse(d); DB={...DB,...p,settings:{...DB.settings,...(p.settings||{})}}; }catch(e){} }
+}
+load();
+
+// ── HERO LOGO ──
+function applyHeroLogo(){
+  const img = document.getElementById('hero-logo-img');
+  const fb = document.getElementById('hero-logo-fallback');
+  if(DB.settings.heroLogo){
+    img.src = DB.settings.heroLogo;
+    img.style.display = 'block';
+    fb.style.display = 'none';
+  } else {
+    img.style.display = 'none';
+    fb.style.display = 'block';
+  }
+}
+function uploadHeroLogo(input){
+  const f = input.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    DB.settings.heroLogo = e.target.result;
+    save(); applyHeroLogo();
+    document.getElementById('settings-msg').textContent = '✅ تم رفع اللوكو';
+    setTimeout(()=>document.getElementById('settings-msg').textContent='', 2500);
+  };
+  r.readAsDataURL(f);
+}
+applyHeroLogo();
+
+// ── LOGO TAP (5 times to open admin) ──
+let logoTapCount = 0, logoTapTimer = null;
+function handleLogoTap(){
+  logoTapCount++;
+  clearTimeout(logoTapTimer);
+  logoTapTimer = setTimeout(()=>{ logoTapCount=0; }, 2000);
+  if(logoTapCount >= 5){
+    logoTapCount = 0;
+    clearTimeout(logoTapTimer);
+    showPage('admin');
+  } else {
+    showPage('home');
+  }
+}
+
+// ── NAV ──
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active','page-enter'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  const target = document.getElementById('page-'+id);
+  target.classList.add('active');
+  void target.offsetWidth;
+  target.classList.add('page-enter');
+  const navBtn = document.getElementById('nav-'+id);
+  if(navBtn) navBtn.classList.add('active');
+  if(id==='canvas') renderCanvas();
+  if(id==='shop') renderShop();
+  if(id==='works') renderWorks();
+  if(id==='admin') renderAdminPanels();
+  window.scrollTo(0,0);
+}
+
+// ── ADMIN LOCK ──
+function tryUnlock(){
+  const v = document.getElementById('admin-code').value;
+  if(v === DB.settings.pass){
+    adminUnlocked = true;
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.getElementById('admin-content').classList.remove('hidden');
+    renderAdminPanels();
+  } else {
+    const el = document.getElementById('lock-error');
+    el.textContent = '❌ الرمز غير صحيح';
+    setTimeout(()=>el.textContent='',2500);
+  }
+}
+function lockAdmin(){
+  adminUnlocked = false;
+  document.getElementById('admin-code').value='';
+  document.getElementById('lock-screen').classList.remove('hidden');
+  document.getElementById('admin-content').classList.add('hidden');
+  showPage('home');
+}
+function switchAdminTab(id, btn){
+  document.querySelectorAll('.admin-sub').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+// ── IMAGE ──
+function previewImg(input, previewId){
+  const f = input.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    const img = document.getElementById(previewId);
+    img.src = e.target.result; img.classList.remove('hidden');
+  };
+  r.readAsDataURL(f);
+}
+function getImgData(previewId){
+  const img = document.getElementById(previewId);
+  return img.src && !img.classList.contains('hidden') ? img.src : '';
+}
+
+// ── CURRENCY ──
+function fmt(n){ return Number(n).toLocaleString('ar-IQ') + ' ' + (DB.settings.currency||'د.ع'); }
+
+// ── CANVAS ──
+function addCanvas(){
+  const name=document.getElementById('cv-name').value.trim();
+  const w=+document.getElementById('cv-w').value;
+  const h=+document.getElementById('cv-h').value;
+  const price=+document.getElementById('cv-price').value;
+  const isNew=document.getElementById('cv-new').value==='1';
+  if(!name||!w||!h||!price){ alert('يرجى تعبئة الحقول'); return; }
+  DB.canvases.push({id:Date.now(),name,w,h,price,isNew});
+  save(); renderAdminPanels(); renderCanvas();
+  ['cv-name','cv-w','cv-h','cv-price'].forEach(id=>document.getElementById(id).value='');
+}
+function deleteCanvas(id){ DB.canvases=DB.canvases.filter(c=>c.id!==id); save(); renderAdminPanels(); renderCanvas(); }
+
+function renderCanvas(){
+  const g=document.getElementById('canvas-grid');
+  if(!DB.canvases.length){ g.innerHTML='<p style="color:var(--silver);text-align:center;padding:3rem;grid-column:1/-1">لا توجد قياسات بعد</p>'; return; }
+  g.innerHTML=DB.canvases.map(c=>{
+    const maxD=Math.max(c.w,c.h), scale=100/maxD;
+    const pw=Math.round(c.w*scale), ph=Math.round(c.h*scale);
+    return `<div class="canvas-card" onclick="openModal({name:'${escH(c.name)}',info:'القياس: ${c.w} × ${c.h} سم',price:'${fmt(c.price)}'})">
+      ${c.isNew?'<div class="badge-new">جديد</div>':''}
+      <div class="canvas-preview" style="width:${pw}px;height:${ph}px;">كانفاس</div>
+      <div class="canvas-name">${c.name}</div>
+      <div class="canvas-size">${c.w} × ${c.h} سم</div>
+      <div class="canvas-price">${fmt(c.price)}</div>
+    </div>`;
+  }).join('');
+}
+function renderAdminCanvasList(){
+  const el=document.getElementById('admin-canvas-list');
+  el.innerHTML=DB.canvases.map(c=>`
+    <div class="item-row">
+      <div style="width:44px;height:44px;background:rgba(107,15,26,0.25);border:1px dashed rgba(184,149,90,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--silver);">${c.w}×${c.h}</div>
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${c.name}</div><div style="font-size:.76rem;color:var(--silver)">${c.w}×${c.h} سم — ${fmt(c.price)}</div></div>
+      <button class="btn-danger" onclick="deleteCanvas(${c.id})">حذف</button>
+    </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
+}
+
+// ── SHOP ──
+function addShopItem(){
+  const name=document.getElementById('sh-name').value.trim();
+  const w=+document.getElementById('sh-w').value;
+  const h=+document.getElementById('sh-h').value;
+  const size=document.getElementById('sh-size').value;
+  const price=+document.getElementById('sh-price').value;
+  const desc=document.getElementById('sh-desc').value.trim();
+  const img=getImgData('sh-img-preview');
+  if(!name||!price){ alert('يرجى تعبئة الاسم والسعر'); return; }
+  DB.shop.push({id:Date.now(),name,w,h,size,price,desc,img});
+  save(); renderAdminPanels(); renderShop();
+  ['sh-name','sh-w','sh-h','sh-price','sh-desc'].forEach(id=>document.getElementById(id).value='');
+  const p=document.getElementById('sh-img-preview'); p.src=''; p.classList.add('hidden');
+}
+function deleteShop(id){ DB.shop=DB.shop.filter(s=>s.id!==id); save(); renderAdminPanels(); renderShop(); }
+
+function renderShop(){
+  const g=document.getElementById('shop-grid');
+  if(!DB.shop.length){ g.innerHTML='<p style="color:var(--silver);text-align:center;padding:3rem;grid-column:1/-1">لا توجد منتجات بعد</p>'; return; }
+  g.innerHTML=DB.shop.map(s=>`
+    <div class="product-card" onclick="openModal({name:'${escH(s.name)}',img:'${s.img}',info:'القياس: ${s.w||'—'} × ${s.h||'—'} سم<br>الحجم: ${s.size}<br>${escH(s.desc)}',price:'${fmt(s.price)}'})">
+      <div class="product-img">${s.img?`<img src="${s.img}" alt="${escH(s.name)}">`:'<div class="no-img">🖼</div>'}</div>
+      <div class="product-info">
+        <div class="product-name">${s.name}</div>
+        <div class="product-dim">${s.w&&s.h?s.w+' × '+s.h+' سم':''}</div>
+        <span class="product-size-tag">${s.size}</span>
+        <div class="product-price">${fmt(s.price)}</div>
+        ${s.desc?`<div class="product-desc">${s.desc}</div>`:''}
+        <button class="btn-order" onclick="event.stopPropagation();window.open('https://www.instagram.com/na8kis?igsh=MXg5MXFna2MwdGdnbQ==','_blank')">طلب الآن</button>
+      </div>
+    </div>`).join('');
+}
+function renderAdminShopList(){
+  const el=document.getElementById('admin-shop-list');
+  el.innerHTML=DB.shop.map(s=>`
+    <div class="item-row">
+      ${s.img?`<img src="${s.img}" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">`:'<div style="width:44px;height:44px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🖼</div>'}
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${s.name}</div><div style="font-size:.76rem;color:var(--silver)">${fmt(s.price)}</div></div>
+      <button class="btn-danger" onclick="deleteShop(${s.id})">حذف</button>
+    </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
+}
+
+// ── WORKS ──
+function addWork(){
+  const name=document.getElementById('wk-name').value.trim();
+  const w=+document.getElementById('wk-w').value;
+  const h=+document.getElementById('wk-h').value;
+  const type=document.getElementById('wk-type').value.trim();
+  const img=getImgData('wk-img-preview');
+  if(!name){ alert('يرجى إدخال عنوان العمل'); return; }
+  DB.works.push({id:Date.now(),name,w,h,type,img});
+  save(); renderAdminPanels(); renderWorks();
+  ['wk-name','wk-w','wk-h','wk-type'].forEach(id=>document.getElementById(id).value='');
+  const p=document.getElementById('wk-img-preview'); p.src=''; p.classList.add('hidden');
+}
+function deleteWork(id){ DB.works=DB.works.filter(w=>w.id!==id); save(); renderAdminPanels(); renderWorks(); }
+
+function renderWorks(){
+  const g=document.getElementById('works-grid');
+  if(!DB.works.length){ g.innerHTML='<p style="color:var(--silver);text-align:center;padding:3rem;grid-column:1/-1">لا توجد أعمال بعد</p>'; return; }
+  g.innerHTML=DB.works.map(w=>`
+    <div class="work-card" onclick="openModal({name:'${escH(w.name)}',img:'${w.img}',info:'القياس: ${w.w||'—'} × ${w.h||'—'} سم<br>النوع: ${escH(w.type||'—')}',price:''})">
+      <div class="work-img">${w.img?`<img src="${w.img}" alt="${escH(w.name)}">`:'<div class="no-img">🧵</div>'}</div>
+      <div class="work-info">
+        <div class="work-title">${w.name}</div>
+        <div class="work-dim">${w.w&&w.h?w.w+' × '+w.h+' سم':''}</div>
+        ${w.type?`<div class="work-type">${w.type}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function renderAdminWorksList(){
+  const el=document.getElementById('admin-works-list');
+  el.innerHTML=DB.works.map(w=>`
+    <div class="item-row">
+      ${w.img?`<img src="${w.img}" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">`:'<div style="width:44px;height:44px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🧵</div>'}
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${w.name}</div><div style="font-size:.76rem;color:var(--silver)">${w.w&&w.h?w.w+'×'+w.h+' سم':''} ${w.type||''}</div></div>
+      <button class="btn-danger" onclick="deleteWork(${w.id})">حذف</button>
+    </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
+}
+
+// ── SETTINGS ──
+function saveSettings(){
+  DB.settings.currency=document.getElementById('s-currency').value;
+  DB.settings.storename=document.getElementById('s-storename').value||'ناكيش';
+  save();
+  const el=document.getElementById('settings-msg');
+  el.textContent='✅ تم الحفظ بنجاح';
+  setTimeout(()=>el.textContent='',2500);
+}
+function changePass(){
+  const old=document.getElementById('s-oldpass').value;
+  const nw=document.getElementById('s-newpass').value;
+  if(old!==DB.settings.pass){ alert('الرمز القديم غير صحيح'); return; }
+  if(!nw||nw.length<4){ alert('الرمز الجديد قصير جداً'); return; }
+  DB.settings.pass=nw; save();
+  alert('✅ تم تغيير الرمز السري');
+  document.getElementById('s-oldpass').value='';
+  document.getElementById('s-newpass').value='';
+}
+function clearAll(){
+  DB.canvases=[]; DB.shop=[]; DB.works=[];
+  save(); renderAdminPanels(); renderCanvas(); renderShop(); renderWorks();
+}
+function renderAdminPanels(){
+  if(!adminUnlocked) return;
+  renderAdminCanvasList(); renderAdminShopList(); renderAdminWorksList();
+  document.getElementById('s-currency').value=DB.settings.currency||'د.ع';
+  document.getElementById('s-storename').value=DB.settings.storename||'ناكيش';
+}
+
+// ── MODAL ──
+function openModal({name,img,info,price}){
+  document.getElementById('modal-title').innerHTML=name;
+  document.getElementById('modal-info').innerHTML=info||'';
+  document.getElementById('modal-price').innerHTML=price||'';
+  const mi=document.getElementById('modal-img');
+  if(img){ mi.src=img; mi.classList.remove('hidden'); } else { mi.classList.add('hidden'); }
+  document.getElementById('modal').classList.remove('hidden');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.add('hidden');
+  document.body.style.overflow='';
+}
+document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this)closeModal(); });
+
+function escH(s){ return String(s||'').replace(/'/g,"&#39;").replace(/"/g,'&quot;'); }
+
+// ── INIT ──
+renderCanvas(); renderShop(); renderWorks();
+</script>
+</body>
+</html>
