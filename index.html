@@ -34,15 +34,15 @@
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-user-select: none;
-    -moz-user-select: none;
     user-select: none;
     touch-action: manipulation;
+    font-size: 18px; /* base font size increased */
   }
 
   body::before {
     content:'';
     position:fixed; inset:0; z-index:0;
-    background: 
+    background:
       radial-gradient(ellipse at 20% 50%, rgba(107,15,26,0.12) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 20%, rgba(61,0,8,0.15) 0%, transparent 50%);
     pointer-events:none;
@@ -56,40 +56,40 @@
     border-bottom: 1px solid rgba(184,149,90,0.15);
     padding: 0 1rem;
     display:flex; align-items:center; justify-content:space-between;
-    height:60px;
+    height:68px;
   }
 
   .logo {
     font-family: 'Scheherazade New', serif;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     color: var(--cream);
     cursor:pointer;
     display:flex; align-items:baseline; gap:.4rem;
     -webkit-tap-highlight-color: transparent;
   }
-  .logo span { font-size:0.55rem; color:var(--silver); font-family:'Scheherazade New',serif; letter-spacing:3px; font-weight:400; }
+  .logo span { font-size:0.6rem; color:var(--silver); font-family:'Scheherazade New',serif; letter-spacing:3px; font-weight:400; }
 
   nav { display:flex; gap:0.1rem; align-items:center; }
   nav button {
     background:none; border:none; cursor:pointer;
-    font-family:'Scheherazade New', serif; font-size:1rem; font-weight:500;
+    font-family:'Scheherazade New', serif; font-size:1.1rem; font-weight:500;
     color: var(--silver-light);
-    padding: 0.45rem 0.7rem;
+    padding: 0.5rem 0.75rem;
     border-radius:8px;
     transition: all .22s ease;
     position:relative;
     -webkit-tap-highlight-color: transparent;
-    min-height: 44px;
+    min-height: 48px;
   }
   nav button:hover { color: var(--cream); background: rgba(255,255,255,0.05); }
   nav button.active { color: var(--cream); }
   nav button.active::after {
     content:''; position:absolute; bottom:5px; right:50%; transform:translateX(50%);
-    width:14px; height:1.5px; background:var(--gold); border-radius:2px;
+    width:16px; height:2px; background:var(--gold); border-radius:2px;
   }
 
   /* ─── PAGE TRANSITIONS ─── */
-  .page { display:none; min-height:calc(100vh - 60px); padding:2rem 1rem; position:relative; z-index:1; }
+  .page { display:none; min-height:calc(100vh - 68px); padding:2rem 1.1rem; position:relative; z-index:1; }
   .page.active { display:block; }
   .page.page-enter { animation: pageIn .4s cubic-bezier(0.22,1,0.36,1) forwards; }
   @keyframes pageIn {
@@ -99,10 +99,10 @@
 
   .page-title {
     font-family:'Scheherazade New',serif;
-    font-size:2rem; color:var(--cream);
-    text-align:center; margin-bottom:0.3rem; font-weight:600;
+    font-size:2.4rem; color:var(--cream);
+    text-align:center; margin-bottom:0.4rem; font-weight:600;
   }
-  .page-sub { text-align:center; color:var(--silver); font-size:0.95rem; margin-bottom:2rem; line-height:1.8; }
+  .page-sub { text-align:center; color:var(--silver); font-size:1.1rem; margin-bottom:2rem; line-height:2; }
   .divider {
     width:80px; height:1px;
     background: linear-gradient(90deg,transparent,rgba(184,149,90,0.5),transparent);
@@ -111,15 +111,14 @@
 
   /* ─── HERO ─── */
   #hero {
-    min-height:calc(100vh - 60px);
+    min-height:calc(100vh - 68px);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding:2rem 1rem;
   }
 
-  /* Logo image in hero */
   .hero-logo-img {
-    width: clamp(180px, 55vw, 320px);
-    height: clamp(180px, 55vw, 320px);
+    width: clamp(200px, 60vw, 340px);
+    height: clamp(200px, 60vw, 340px);
     object-fit: contain;
     animation: heroFadeIn 1.2s cubic-bezier(0.22,1,0.36,1) both;
     border-radius: 12px;
@@ -130,13 +129,13 @@
     to   { opacity:1; transform:translateY(0) scale(1); }
   }
   .hero-en {
-    letter-spacing:8px; font-size:0.75rem; color:var(--silver);
+    letter-spacing:8px; font-size:0.85rem; color:var(--silver);
     margin-top:0.8rem;
     animation: heroFadeIn 1.2s .2s cubic-bezier(0.22,1,0.36,1) both;
     font-weight:400; font-family:'Scheherazade New',serif;
   }
   .hero-tagline {
-    font-size:1.05rem; color:var(--silver-light); margin:1.5rem 0 2.5rem; max-width:340px; line-height:2;
+    font-size:1.2rem; color:var(--silver-light); margin:1.5rem 0 2.5rem; max-width:360px; line-height:2.1;
     font-weight:400;
     animation: heroFadeIn 1.2s .4s cubic-bezier(0.22,1,0.36,1) both;
   }
@@ -149,33 +148,33 @@
     animation: heroFadeIn 1.2s .6s cubic-bezier(0.22,1,0.36,1) both;
   }
   .btn-primary {
-    padding:0.7rem 1.8rem; border-radius:8px;
+    padding:0.8rem 2rem; border-radius:8px;
     background: rgba(184,149,90,0.12);
     border:1px solid rgba(184,149,90,0.35);
-    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1rem;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1.15rem;
     cursor:pointer; transition:all .25s ease;
-    min-height:44px;
+    min-height:50px;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-primary:hover { background:rgba(184,149,90,0.22); }
   .btn-outline {
-    padding:0.7rem 1.8rem; border-radius:8px;
+    padding:0.8rem 2rem; border-radius:8px;
     background:transparent; border:1px solid rgba(255,255,255,0.15);
-    color:var(--silver-light); font-family:'Scheherazade New',serif; font-weight:500; font-size:1rem;
+    color:var(--silver-light); font-family:'Scheherazade New',serif; font-weight:500; font-size:1.15rem;
     cursor:pointer; transition:all .25s ease;
-    min-height:44px;
+    min-height:50px;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-outline:hover { border-color:rgba(255,255,255,0.3); color:var(--cream); }
 
   /* ─── CANVAS CARDS ─── */
   .canvas-grid {
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:0.9rem;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1rem;
   }
   .canvas-card {
     background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.07);
-    border-radius:10px; padding:1.1rem 0.9rem;
+    border-radius:12px; padding:1.3rem 1rem;
     text-align:center; cursor:pointer;
     transition:all .25s ease;
     position:relative; overflow:hidden;
@@ -185,21 +184,21 @@
   .canvas-preview {
     background:rgba(107,15,26,0.2);
     border:1px solid rgba(184,149,90,0.15);
-    margin:0 auto 0.8rem;
+    margin:0 auto 1rem;
     display:flex; align-items:center; justify-content:center;
-    font-size:0.65rem; color:var(--silver); border-radius:3px;
+    font-size:0.75rem; color:var(--silver); border-radius:3px;
   }
-  .canvas-name { font-weight:600; font-size:1rem; color:var(--cream); margin-bottom:.25rem; }
-  .canvas-size { font-size:0.82rem; color:var(--silver); }
-  .canvas-price { font-size:1rem; font-weight:700; color:var(--cream); margin-top:.45rem; }
-  .badge-new { position:absolute; top:8px; left:8px; background:var(--gold); color:var(--burgundy-dark); font-size:0.6rem; font-weight:800; padding:2px 7px; border-radius:20px; }
+  .canvas-name { font-weight:600; font-size:1.15rem; color:var(--cream); margin-bottom:.3rem; }
+  .canvas-size { font-size:0.95rem; color:var(--silver); }
+  .canvas-price { font-size:1.15rem; font-weight:700; color:var(--cream); margin-top:.5rem; }
+  .badge-new { position:absolute; top:8px; left:8px; background:var(--gold); color:var(--burgundy-dark); font-size:0.7rem; font-weight:800; padding:3px 9px; border-radius:20px; }
 
   /* ─── WORKS / PRODUCTS GRIDS ─── */
   .works-grid {
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:1rem;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(165px,1fr)); gap:1.1rem;
   }
   .work-card, .product-card {
-    border-radius:10px; overflow:hidden;
+    border-radius:12px; overflow:hidden;
     background:rgba(255,255,255,0.03);
     border:1px solid rgba(255,255,255,0.07);
     transition:all .3s ease; cursor:pointer;
@@ -213,24 +212,24 @@
     overflow:hidden; position:relative;
   }
   .work-img img, .product-img img { width:100%; height:100%; object-fit:cover; }
-  .work-img .no-img, .product-img .no-img { font-size:2.2rem; opacity:.2; }
-  .work-info, .product-info { padding:0.8rem; }
-  .work-title, .product-name { font-weight:600; color:var(--cream); font-size:0.95rem; margin-bottom:.2rem; }
-  .work-dim, .product-dim { font-size:0.78rem; color:var(--silver); }
-  .work-type { font-size:0.75rem; color:var(--silver-light); margin-top:.2rem; }
-  .product-price { font-size:1.05rem; font-weight:700; color:var(--cream); margin-top:.4rem; }
+  .work-img .no-img, .product-img .no-img { font-size:2.8rem; opacity:.2; }
+  .work-info, .product-info { padding:1rem; }
+  .work-title, .product-name { font-weight:600; color:var(--cream); font-size:1.1rem; margin-bottom:.25rem; }
+  .work-dim, .product-dim { font-size:0.9rem; color:var(--silver); }
+  .work-type { font-size:0.88rem; color:var(--silver-light); margin-top:.25rem; }
+  .product-price { font-size:1.2rem; font-weight:700; color:var(--cream); margin-top:.45rem; }
   .product-size-tag {
     display:inline-block; background:rgba(255,255,255,0.06); color:var(--silver-light);
-    font-size:0.7rem; padding:2px 7px; border-radius:4px; margin-top:.2rem;
+    font-size:0.82rem; padding:3px 9px; border-radius:4px; margin-top:.25rem;
     border:1px solid rgba(255,255,255,0.08);
   }
-  .product-desc { font-size:0.8rem; color:var(--silver); margin-top:.3rem; line-height:1.6; }
+  .product-desc { font-size:0.92rem; color:var(--silver); margin-top:.35rem; line-height:1.7; }
   .btn-order {
-    width:100%; margin-top:.65rem; padding:.5rem; border-radius:7px;
+    width:100%; margin-top:.75rem; padding:.65rem; border-radius:8px;
     background:rgba(184,149,90,0.1);
     border:1px solid rgba(184,149,90,0.25);
-    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:0.9rem;
-    cursor:pointer; transition:.22s; min-height:42px;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1.05rem;
+    cursor:pointer; transition:.22s; min-height:46px;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-order:active { background:rgba(184,149,90,0.2); }
@@ -243,51 +242,51 @@
   }
   .admin-section-title {
     font-family:'Scheherazade New',serif;
-    font-size:1.2rem; color:var(--cream); margin-bottom:1rem;
+    font-size:1.3rem; color:var(--cream); margin-bottom:1rem;
     display:flex; align-items:center; gap:.5rem; font-weight:600;
   }
   .form-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; }
   .form-group { display:flex; flex-direction:column; gap:.3rem; }
-  label { font-size:0.82rem; color:var(--silver-light); font-weight:500; font-family:'Scheherazade New',serif; }
+  label { font-size:0.9rem; color:var(--silver-light); font-weight:500; font-family:'Scheherazade New',serif; }
   input[type=text], input[type=number], input[type=password], input[type=color], textarea, select {
     background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.1);
-    border-radius:7px; padding:.55rem .75rem;
-    color:var(--cream); font-family:'Scheherazade New',serif; font-size:0.9rem;
-    outline:none; transition:.2s; width:100%; min-height:42px;
+    border-radius:7px; padding:.6rem .8rem;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-size:1rem;
+    outline:none; transition:.2s; width:100%; min-height:46px;
     -webkit-user-select: text;
     user-select: text;
   }
   input:focus, textarea:focus, select:focus { border-color:rgba(184,149,90,0.4); background:rgba(184,149,90,0.04); }
-  input[type=color] { height:42px; cursor:pointer; padding:.2rem; }
-  textarea { resize:vertical; min-height:75px; -webkit-user-select: text; user-select: text; }
+  input[type=color] { height:46px; cursor:pointer; padding:.2rem; }
+  textarea { resize:vertical; min-height:80px; -webkit-user-select: text; user-select: text; }
   select option { background:#2A1018; }
   .btn-add {
-    padding:.55rem 1.5rem; background:rgba(184,149,90,0.12);
+    padding:.6rem 1.6rem; background:rgba(184,149,90,0.12);
     border:1px solid rgba(184,149,90,0.3); border-radius:7px;
-    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:0.9rem;
-    cursor:pointer; transition:.2s; margin-top:0.7rem; min-height:42px;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1rem;
+    cursor:pointer; transition:.2s; margin-top:0.7rem; min-height:46px;
     -webkit-tap-highlight-color: transparent;
   }
   .btn-add:active { background:rgba(184,149,90,0.2); }
   .btn-danger {
     background:rgba(180,30,30,0.18); border:1px solid rgba(200,50,50,0.25);
-    color:#d07070; border-radius:6px; padding:.35rem .7rem; font-size:.8rem;
-    cursor:pointer; font-family:'Scheherazade New',serif; transition:.2s; min-height:40px;
+    color:#d07070; border-radius:6px; padding:.4rem .8rem; font-size:.9rem;
+    cursor:pointer; font-family:'Scheherazade New',serif; transition:.2s; min-height:42px;
     -webkit-tap-highlight-color: transparent;
   }
   .img-upload-label {
     display:block; border:1.5px dashed rgba(255,255,255,0.1);
-    border-radius:9px; padding:.9rem; text-align:center;
-    cursor:pointer; transition:.2s; color:var(--silver); font-size:0.85rem;
+    border-radius:9px; padding:1rem; text-align:center;
+    cursor:pointer; transition:.2s; color:var(--silver); font-size:0.95rem;
     margin-top:.6rem; font-family:'Scheherazade New',serif;
   }
   .img-upload-label input { display:none; }
-  .img-preview { width:75px; height:75px; object-fit:cover; border-radius:6px; border:1px solid rgba(255,255,255,0.1); margin:.4rem auto 0; display:block; }
+  .img-preview { width:80px; height:80px; object-fit:cover; border-radius:6px; border:1px solid rgba(255,255,255,0.1); margin:.4rem auto 0; display:block; }
 
   /* ─── ITEM ROWS ─── */
   .item-row {
-    display:flex; align-items:center; gap:.75rem; padding:.7rem .85rem;
+    display:flex; align-items:center; gap:.75rem; padding:.8rem .9rem;
     border-radius:8px; margin-bottom:.45rem;
     background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05);
   }
@@ -295,33 +294,33 @@
   /* ─── LOCK SCREEN ─── */
   .lock-screen {
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:calc(100vh - 60px); text-align:center; padding:2rem;
+    min-height:calc(100vh - 68px); text-align:center; padding:2rem;
   }
-  .lock-icon { font-size:2.8rem; margin-bottom:1rem; opacity:.4; }
-  .lock-title { font-family:'Scheherazade New',serif; font-size:1.7rem; color:var(--cream); margin-bottom:.35rem; font-weight:600; }
-  .lock-sub { color:var(--silver); margin-bottom:2rem; font-size:.95rem; font-family:'Scheherazade New',serif; }
+  .lock-icon { font-size:3rem; margin-bottom:1rem; opacity:.4; }
+  .lock-title { font-family:'Scheherazade New',serif; font-size:1.9rem; color:var(--cream); margin-bottom:.4rem; font-weight:600; }
+  .lock-sub { color:var(--silver); margin-bottom:2rem; font-size:1.05rem; font-family:'Scheherazade New',serif; }
   .lock-input-wrap { display:flex; gap:.7rem; flex-wrap:wrap; justify-content:center; }
-  .lock-input { font-size:1.1rem; text-align:center; width:200px; letter-spacing:4px; }
+  .lock-input { font-size:1.2rem; text-align:center; width:210px; letter-spacing:4px; }
   .btn-unlock {
-    padding:.6rem 1.6rem; background:rgba(184,149,90,0.12);
+    padding:.65rem 1.8rem; background:rgba(184,149,90,0.12);
     border:1px solid rgba(184,149,90,0.3); border-radius:7px;
-    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:.95rem;
-    cursor:pointer; transition:.2s; min-height:44px;
+    color:var(--cream); font-family:'Scheherazade New',serif; font-weight:600; font-size:1.05rem;
+    cursor:pointer; transition:.2s; min-height:48px;
     -webkit-tap-highlight-color: transparent;
   }
-  .lock-error { color:#d06060; font-size:.82rem; margin-top:.5rem; min-height:20px; font-family:'Scheherazade New',serif; }
+  .lock-error { color:#d06060; font-size:.9rem; margin-top:.5rem; min-height:22px; font-family:'Scheherazade New',serif; }
 
   /* ─── ADMIN TABS ─── */
   .admin-tabs {
     display:flex; gap:.3rem; margin-bottom:1.4rem; flex-wrap:wrap;
-    background:rgba(255,255,255,0.02); padding:.35rem; border-radius:9px;
+    background:rgba(255,255,255,0.02); padding:.4rem; border-radius:9px;
     border:1px solid rgba(255,255,255,0.06);
   }
   .admin-tab {
-    padding:.45rem .9rem; border-radius:6px;
+    padding:.5rem 1rem; border-radius:6px;
     background:transparent; border:none; color:var(--silver);
-    font-family:'Scheherazade New',serif; font-size:.88rem; font-weight:500; cursor:pointer; transition:.2s;
-    min-height:40px; -webkit-tap-highlight-color: transparent;
+    font-family:'Scheherazade New',serif; font-size:1rem; font-weight:500; cursor:pointer; transition:.2s;
+    min-height:44px; -webkit-tap-highlight-color: transparent;
     flex:1; min-width:70px; text-align:center;
   }
   .admin-tab:hover { color:var(--cream); }
@@ -332,11 +331,11 @@
   /* ─── SETTINGS ─── */
   .settings-row {
     display:flex; align-items:center; justify-content:space-between;
-    padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,0.04); gap:1rem; flex-wrap:wrap;
+    padding:1rem 0; border-bottom:1px solid rgba(255,255,255,0.04); gap:1rem; flex-wrap:wrap;
   }
   .settings-row:last-child { border:none; }
-  .settings-label { font-size:.9rem; color:var(--cream); font-weight:500; font-family:'Scheherazade New',serif; }
-  .settings-note { font-size:.75rem; color:var(--silver); margin-top:.12rem; font-family:'Scheherazade New',serif; }
+  .settings-label { font-size:1rem; color:var(--cream); font-weight:500; font-family:'Scheherazade New',serif; }
+  .settings-note { font-size:0.82rem; color:var(--silver); margin-top:.12rem; font-family:'Scheherazade New',serif; }
 
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width:4px; }
@@ -353,7 +352,7 @@
   .modal-bg.hidden { display:none !important; }
   .modal-box {
     background:#1E0A0E; border:1px solid rgba(255,255,255,0.1);
-    border-radius:18px 18px 0 0; padding:1.6rem; width:100%; max-width:500px;
+    border-radius:18px 18px 0 0; padding:1.8rem; width:100%; max-width:520px;
     position:relative; max-height:85vh; overflow-y:auto;
     animation: modalSlide .3s cubic-bezier(0.22,1,0.36,1);
   }
@@ -361,24 +360,24 @@
     from{transform:translateY(40px);opacity:0}
     to{transform:translateY(0);opacity:1}
   }
-  .modal-handle { width:36px; height:4px; background:rgba(255,255,255,0.15); border-radius:2px; margin:0 auto 1.2rem; }
+  .modal-handle { width:40px; height:4px; background:rgba(255,255,255,0.15); border-radius:2px; margin:0 auto 1.3rem; }
   .modal-close {
-    position:absolute; top:.85rem; left:.85rem;
+    position:absolute; top:.9rem; left:.9rem;
     background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);
-    color:var(--silver); font-size:1rem; cursor:pointer;
-    width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    color:var(--silver); font-size:1.1rem; cursor:pointer;
+    width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center;
     transition:.2s; -webkit-tap-highlight-color:transparent;
   }
-  .modal-img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:10px; margin-bottom:.9rem; }
-  .modal-title { font-family:'Scheherazade New',serif; font-size:1.5rem; color:var(--cream); margin-bottom:.3rem; font-weight:600; }
-  .modal-info { font-size:.85rem; color:var(--silver); line-height:1.9; font-family:'Scheherazade New',serif; }
-  .modal-price { font-size:1.25rem; font-weight:700; color:var(--cream); margin-top:.65rem; font-family:'Scheherazade New',serif; }
+  .modal-img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:10px; margin-bottom:1rem; }
+  .modal-title { font-family:'Scheherazade New',serif; font-size:1.7rem; color:var(--cream); margin-bottom:.35rem; font-weight:600; }
+  .modal-info { font-size:1rem; color:var(--silver); line-height:2; font-family:'Scheherazade New',serif; }
+  .modal-price { font-size:1.4rem; font-weight:700; color:var(--cream); margin-top:.7rem; font-family:'Scheherazade New',serif; }
   .hidden { display:none !important; }
 
   /* ─── STATUS BAR ─── */
   .status-bar {
-    text-align:center; font-size:.7rem; color:rgba(255,255,255,0.15);
-    padding:.6rem; border-top:1px solid rgba(255,255,255,0.04);
+    text-align:center; font-size:.8rem; color:rgba(255,255,255,0.15);
+    padding:.7rem; border-top:1px solid rgba(255,255,255,0.04);
     margin-top:3rem; letter-spacing:1px; font-family:'Scheherazade New',serif;
   }
 </style>
@@ -402,9 +401,8 @@
 <!-- HOME -->
 <div class="page active" id="page-home">
   <section id="hero">
-    <!-- The uploaded logo image -->
     <img class="hero-logo-img" src="" id="hero-logo-img" alt="ناكيش" onerror="this.style.display='none'; document.getElementById('hero-logo-fallback').style.display='block'">
-    <div id="hero-logo-fallback" style="display:none;font-family:'Scheherazade New',serif;font-size:clamp(3.5rem,11vw,7rem);color:var(--cream);font-weight:700;line-height:1;">ناكيش</div>
+    <div id="hero-logo-fallback" style="display:none;font-family:'Scheherazade New',serif;font-size:clamp(4rem,12vw,8rem);color:var(--cream);font-weight:700;line-height:1;">ناكيش</div>
     <div class="hero-en">N A K İ Ş</div>
     <div class="hero-line"></div>
     <p class="hero-tagline">فن التطريز اليدوي الأصيل — حيث تُروى القصص بالإبرة والخيط</p>
@@ -439,7 +437,7 @@
   <div class="works-grid" id="works-grid"></div>
 </div>
 
-<!-- ADMIN (HIDDEN — accessible via 5 logo taps) -->
+<!-- ADMIN -->
 <div class="page" id="page-admin">
   <div class="lock-screen" id="lock-screen">
     <div class="lock-icon">🔐</div>
@@ -527,14 +525,14 @@
         <div class="settings-row">
           <div><div class="settings-label">تغيير الرمز السري</div><div class="settings-note">الرمز الافتراضي: nakish2025</div></div>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-            <input type="password" id="s-oldpass" style="width:110px" placeholder="القديم">
-            <input type="password" id="s-newpass" style="width:110px" placeholder="الجديد">
+            <input type="password" id="s-oldpass" style="width:115px" placeholder="القديم">
+            <input type="password" id="s-newpass" style="width:115px" placeholder="الجديد">
             <button class="btn-add" style="margin:0" onclick="changePass()">تغيير</button>
           </div>
         </div>
         <div class="settings-row">
           <div><div class="settings-label">عملة الأسعار</div></div>
-          <select id="s-currency" style="width:150px">
+          <select id="s-currency" style="width:160px">
             <option value="د.ع">دينار عراقي (د.ع)</option>
             <option value="$">دولار ($)</option>
           </select>
@@ -550,7 +548,7 @@
           <button class="btn-danger" onclick="if(confirm('هل أنت متأكد؟ ستُمسح كل البيانات!'))clearAll()">مسح الكل</button>
         </div>
         <button class="btn-add" onclick="saveSettings()">💾 حفظ الإعدادات</button>
-        <div id="settings-msg" style="color:var(--silver-light);margin-top:.6rem;font-size:.85rem;font-family:'Scheherazade New',serif;"></div>
+        <div id="settings-msg" style="color:var(--silver-light);margin-top:.6rem;font-size:.95rem;font-family:'Scheherazade New',serif;"></div>
       </div>
     </div>
 
@@ -575,17 +573,14 @@
 <div class="status-bar">ناكيش — فن التطريز الأصيل © 2025</div>
 
 <script>
-// ── PREVENT COPY/PASTE/CONTEXT MENU ──
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('copy', e => e.preventDefault());
 document.addEventListener('cut', e => e.preventDefault());
 document.addEventListener('selectstart', e => {
-  // Allow selection inside admin inputs
   if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
   e.preventDefault();
 });
 
-// ── STATE ──
 let DB = {
   canvases: [], shop: [], works: [],
   settings: { pass:'nakish2025', currency:'د.ع', storename:'ناكيش', heroLogo:'' }
@@ -599,7 +594,6 @@ function load(){
 }
 load();
 
-// ── HERO LOGO ──
 function applyHeroLogo(){
   const img = document.getElementById('hero-logo-img');
   const fb = document.getElementById('hero-logo-fallback');
@@ -625,7 +619,6 @@ function uploadHeroLogo(input){
 }
 applyHeroLogo();
 
-// ── LOGO TAP (5 times to open admin) ──
 let logoTapCount = 0, logoTapTimer = null;
 function handleLogoTap(){
   logoTapCount++;
@@ -640,7 +633,6 @@ function handleLogoTap(){
   }
 }
 
-// ── NAV ──
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active','page-enter'));
   document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
@@ -657,7 +649,6 @@ function showPage(id){
   window.scrollTo(0,0);
 }
 
-// ── ADMIN LOCK ──
 function tryUnlock(){
   const v = document.getElementById('admin-code').value;
   if(v === DB.settings.pass){
@@ -685,7 +676,6 @@ function switchAdminTab(id, btn){
   if(btn) btn.classList.add('active');
 }
 
-// ── IMAGE ──
 function previewImg(input, previewId){
   const f = input.files[0]; if(!f) return;
   const r = new FileReader();
@@ -700,10 +690,8 @@ function getImgData(previewId){
   return img.src && !img.classList.contains('hidden') ? img.src : '';
 }
 
-// ── CURRENCY ──
 function fmt(n){ return Number(n).toLocaleString('ar-IQ') + ' ' + (DB.settings.currency||'د.ع'); }
 
-// ── CANVAS ──
 function addCanvas(){
   const name=document.getElementById('cv-name').value.trim();
   const w=+document.getElementById('cv-w').value;
@@ -736,13 +724,12 @@ function renderAdminCanvasList(){
   const el=document.getElementById('admin-canvas-list');
   el.innerHTML=DB.canvases.map(c=>`
     <div class="item-row">
-      <div style="width:44px;height:44px;background:rgba(107,15,26,0.25);border:1px dashed rgba(184,149,90,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--silver);">${c.w}×${c.h}</div>
-      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${c.name}</div><div style="font-size:.76rem;color:var(--silver)">${c.w}×${c.h} سم — ${fmt(c.price)}</div></div>
+      <div style="width:48px;height:48px;background:rgba(107,15,26,0.25);border:1px dashed rgba(184,149,90,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--silver);">${c.w}×${c.h}</div>
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:1rem">${c.name}</div><div style="font-size:.82rem;color:var(--silver)">${c.w}×${c.h} سم — ${fmt(c.price)}</div></div>
       <button class="btn-danger" onclick="deleteCanvas(${c.id})">حذف</button>
     </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
 }
 
-// ── SHOP ──
 function addShopItem(){
   const name=document.getElementById('sh-name').value.trim();
   const w=+document.getElementById('sh-w').value;
@@ -771,7 +758,7 @@ function renderShop(){
         <span class="product-size-tag">${s.size}</span>
         <div class="product-price">${fmt(s.price)}</div>
         ${s.desc?`<div class="product-desc">${s.desc}</div>`:''}
-        <button class="btn-order" onclick="event.stopPropagation();alert('للطلب تواصل مع المتجر')">طلب الآن</button>
+        <button class="btn-order" onclick="event.stopPropagation();window.open('https://www.instagram.com/na8kis?igsh=MXg5MXFna2MwdGdnbQ==','_blank')">طلب الآن</button>
       </div>
     </div>`).join('');
 }
@@ -779,13 +766,12 @@ function renderAdminShopList(){
   const el=document.getElementById('admin-shop-list');
   el.innerHTML=DB.shop.map(s=>`
     <div class="item-row">
-      ${s.img?`<img src="${s.img}" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">`:'<div style="width:44px;height:44px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🖼</div>'}
-      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${s.name}</div><div style="font-size:.76rem;color:var(--silver)">${fmt(s.price)}</div></div>
+      ${s.img?`<img src="${s.img}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;">`:'<div style="width:48px;height:48px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🖼</div>'}
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:1rem">${s.name}</div><div style="font-size:.82rem;color:var(--silver)">${fmt(s.price)}</div></div>
       <button class="btn-danger" onclick="deleteShop(${s.id})">حذف</button>
     </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
 }
 
-// ── WORKS ──
 function addWork(){
   const name=document.getElementById('wk-name').value.trim();
   const w=+document.getElementById('wk-w').value;
@@ -817,13 +803,12 @@ function renderAdminWorksList(){
   const el=document.getElementById('admin-works-list');
   el.innerHTML=DB.works.map(w=>`
     <div class="item-row">
-      ${w.img?`<img src="${w.img}" style="width:44px;height:44px;object-fit:cover;border-radius:6px;">`:'<div style="width:44px;height:44px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🧵</div>'}
-      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:.92rem">${w.name}</div><div style="font-size:.76rem;color:var(--silver)">${w.w&&w.h?w.w+'×'+w.h+' سم':''} ${w.type||''}</div></div>
+      ${w.img?`<img src="${w.img}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;">`:'<div style="width:48px;height:48px;background:rgba(107,15,26,.25);border-radius:6px;display:flex;align-items:center;justify-content:center">🧵</div>'}
+      <div style="flex:1"><div style="font-weight:600;color:var(--cream);font-size:1rem">${w.name}</div><div style="font-size:.82rem;color:var(--silver)">${w.w&&w.h?w.w+'×'+w.h+' سم':''} ${w.type||''}</div></div>
       <button class="btn-danger" onclick="deleteWork(${w.id})">حذف</button>
     </div>`).join('')||'<p style="color:var(--silver);padding:1rem">لا يوجد</p>';
 }
 
-// ── SETTINGS ──
 function saveSettings(){
   DB.settings.currency=document.getElementById('s-currency').value;
   DB.settings.storename=document.getElementById('s-storename').value||'ناكيش';
@@ -853,7 +838,6 @@ function renderAdminPanels(){
   document.getElementById('s-storename').value=DB.settings.storename||'ناكيش';
 }
 
-// ── MODAL ──
 function openModal({name,img,info,price}){
   document.getElementById('modal-title').innerHTML=name;
   document.getElementById('modal-info').innerHTML=info||'';
@@ -871,7 +855,6 @@ document.getElementById('modal').addEventListener('click',function(e){ if(e.targ
 
 function escH(s){ return String(s||'').replace(/'/g,"&#39;").replace(/"/g,'&quot;'); }
 
-// ── INIT ──
 renderCanvas(); renderShop(); renderWorks();
 </script>
 </body>
